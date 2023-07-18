@@ -2,13 +2,14 @@ package com.twohundred.alumni.service.impl;
 
 import java.util.Optional;
 
-import com.twohundred.alumni.entity.Address;
-import com.twohundred.alumni.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.twohundred.alumni.entity.Address;
 import com.twohundred.alumni.entity.Student;
+import com.twohundred.alumni.entity.User;
 import com.twohundred.alumni.entity.dto.request.StudentDto;
+import com.twohundred.alumni.exception.Exceptions;
 import com.twohundred.alumni.repository.StudentRepo;
 import com.twohundred.alumni.service.StudentService;
 
@@ -33,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
         Optional<Student> optionalStudent = studentRepo.findById(id);
 
         if (!optionalStudent.isPresent()) {
-            // TODO: throw exception
+            throw Exceptions.STUDENT_NOT_FOUND;
         }
 
         return optionalStudent.get();
@@ -47,8 +48,11 @@ public class StudentServiceImpl implements StudentService {
 
         tempStudent.setFirstName(studentDto.getFirstName());
         tempStudent.setLastName(studentDto.getLastName());
-        tempStudent.setEmail(studentDto.getEmail());
-        tempStudent.setAddress(new Address());
+
+        if (tempStudent.getAddress() == null) {
+            tempStudent.setAddress(new Address());
+        }
+
         tempStudent.getAddress().setCity(studentDto.getAddress().getCity());
         tempStudent.getAddress().setState(studentDto.getAddress().getState());
         tempStudent.getAddress().setStreet(studentDto.getAddress().getStreet());
