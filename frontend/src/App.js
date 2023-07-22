@@ -12,6 +12,10 @@ import Profile from './components/Profile.js'
 import Home from './components/Home.js'
 import {useState} from "react";
 import ResetPassword from "./components/ResetPassword";
+import JobAdList from './module/job-ad/screen/JobAdList'
+import EditJobAd from './module/job-ad/screen/EditJobAd'
+import CVList from './module/cv/screen/CVList'
+import EditCV from './module/cv/screen/EditCV'
 
 function App() {
   let [authenticated, setAuthenticated] = useState(() => {
@@ -33,6 +37,8 @@ function App() {
       ],
       STUDENT:[{title:'Jobs', path:'/jobs'},
         {title:'Profile', path:'/profile'},
+        {title:'Job Ads', path:'/job-ads'},
+        {title: 'CV', path:'/cvs'},
         {title:'Reset password', path:'/reset-password'}
       ]
   };
@@ -58,7 +64,6 @@ function App() {
   const refreshMenus = () => {
     setAuthenticated(true);
     setMenuItems(defaultMenu());
-    console.log();
   }
 
   const refreshUserData = () => {
@@ -133,6 +138,13 @@ function App() {
               <Route path="/dashboards" element={<Dashboards />}/>
               <Route path="/jobs" element={<Jobs />}/>
               <Route path="/reset-password" element={<ResetPassword />}/>
+              <Route path="/job-ads" element={<JobAdList />}/>
+              <Route path="/job-ads/add" element={<EditJobAd />}/>
+              <Route path="/job-ads/:id/edit" element={<EditJobAd />}/>
+              <Route path="/job-ads/:jobAdId/add-cv" element={<EditCV />}/>
+              <Route path="/cvs" element={<CVList />}/>
+              <Route path="/cvs/:id/edit" element={<EditCV />}/>
+              <Route path="/cvs/:studentId/:id/detail" element={<EditCV />}/>
             </Routes>
 
           </div>

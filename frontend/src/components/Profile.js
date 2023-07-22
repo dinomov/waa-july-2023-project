@@ -99,15 +99,15 @@ export default function Profile(props) {
         }
         // send request
         try {
-            let url = "/students";
+            let url = "/students/";
             if(userData.role == 'FACULTY') {
-                url = "/faculties"
+                url = "/faculties/"
             }
             const headers = {
-                    'Access-Control-Allow-Headers': '*',
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer  ${user.accessToken}`
+                    // 'Access-Control-Allow-Headers': '*',
+                    // "Access-Control-Allow-Origin": "*",
+                    // "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.accessToken}`
             };
             const result = await axios.put(url, data, {headers});
             if(result.status > 399) {
@@ -116,7 +116,7 @@ export default function Profile(props) {
             if(result.status == 200) {
                 user.email = userData.email;
                 user.firstName = userData.firstname;
-                user.lastName = userData.firstname;
+                user.lastName = userData.lastname;
                 user.name = userData.firstname + ' ' + userData.lastname;
                 user.title = userData.title;
                 user.salary = userData.salary;

@@ -9,7 +9,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-axios.defaults.baseURL = "http://localhost:8090";
+axios.defaults.baseURL = "http://localhost:8080";
+
 root.render(
     <BrowserRouter>
         <App />

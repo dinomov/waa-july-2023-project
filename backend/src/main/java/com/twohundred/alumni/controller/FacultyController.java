@@ -31,7 +31,7 @@ import com.twohundred.alumni.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/faculties")
+@RequestMapping("/faculties/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 //@PreAuthorize("hasAnyRole('FACULTY', 'ROLE_FACULTY')")
@@ -58,7 +58,7 @@ public class FacultyController {
         return facultyServiceImpl.delete(currentFaculty);
     }
 
-    @GetMapping("/filter/students")
+    @GetMapping("filter/students")
     public ResponseEntity<?> filterStudentsByParam(@RequestParam(value = "state", required = false) String state, @RequestParam(value = "city", required = false) String city, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "id", required = false) String id) {
         List<StudentDto> result = new ArrayList<>();
         try {
@@ -70,7 +70,7 @@ public class FacultyController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/student/comment")
+    @PostMapping("student/comment")
     public ResponseEntity<?> addCommentToStudent(@RequestBody CommentDto commentDto) {
         User currentFaculty, student;
         try {
@@ -94,7 +94,7 @@ public class FacultyController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/student/comments")
+    @GetMapping("student/comments")
     public ResponseEntity<?> getAllComments(){
 //        User currentFaculty;
 //        try {

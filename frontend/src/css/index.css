@@ -73,3 +73,7 @@ body, html, .App, #root, .auth-wrapper {
   width: 700px;
   border-radius: 10px;
 }
+
+.card-md {
+  width: 70%;
+}
