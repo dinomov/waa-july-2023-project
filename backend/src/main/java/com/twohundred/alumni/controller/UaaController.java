@@ -1,5 +1,6 @@
 package com.twohundred.alumni.controller;
 
+import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -72,7 +73,7 @@ public class UaaController {
     }
 
     public static String getRandom(String[] array) {
-        int rnd = new Random().nextInt(array.length);
+        int rnd = new SecureRandom().nextInt(array.length);
         return array[rnd];
     }
 
